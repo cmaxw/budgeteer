@@ -1,3 +1,7 @@
-
+<h1><%= @account.name %></h1>
 <%= link_to 'Edit', edit_account_path(@account) %> |
-<%= link_to 'Back', accounts_path %>
+<%= link_to 'All Accounts', accounts_path %>
+<h2>Check Register</h2>
+<div class="register">
+<%= render :partial => "register_line", :collection => @transactions %>
+</div>

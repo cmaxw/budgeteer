@@ -22,7 +22,7 @@ describe Transaction do
       :transaction_type_id => 1,
       :payee => "value for payee",
       :amount => 1.5,
-      :payment_date => ,
+      :payment_date => Time.now,
       :cleared => false
     }
   end

@@ -5,7 +5,7 @@ class CreateTransactions < ActiveRecord::Migration
       t.references :transaction_type
       t.string :payee
       t.float :amount
-      t.date_time :payment_date
+      t.datetime :payment_date
       t.boolean :cleared
 
       t.timestamps

@@ -14,6 +14,7 @@ class AccountsController < ApplicationController
   # GET /accounts/1.xml
   def show
     @account = Account.find(params[:id])
+    @transactions = @account.transactions_by_date_range(params[:start], params[:end])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -40,18 +41,16 @@ class AccountsController < ApplicationController
   # POST /accounts
   # POST /accounts.xml
   def create
-    if current_user
-      @account = @current_user.accounts.new(params[:account])
+    @account = Account.new(params[:account])
 
-      respond_to do |format|
-        if @account.save
-          flash[:notice] = 'Account was successfully created.'
-          format.html { redirect_to(@account) }
-          format.xml  { render :xml => @account, :status => :created, :location => @account }
-        else
-          format.html { render :action => "new" }
-          format.xml  { render :xml => @account.errors, :status => :unprocessable_entity }
-        end
+    respond_to do |format|
+      if @account.save
+        flash[:notice] = 'Account was successfully created.'
+        format.html { redirect_to(@account) }
+        format.xml  { render :xml => @account, :status => :created, :location => @account }
+      else
+        format.html { render :action => "new" }
+        format.xml  { render :xml => @account.errors, :status => :unprocessable_entity }
       end
     end
   end

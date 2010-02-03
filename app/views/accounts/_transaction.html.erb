@@ -1,0 +1,7 @@
+<div class="transaction <%= cycle("odd", "even") %>">
+  <div class="transaction_type"><%= transaction.transaction_type.name %></div>
+  <div class="payment_date"><%= transaction.payment_date %></div>
+  <div class="payee"><%= transaction.payee %></div>
+  <div class="amount"><%= transaction.amount %></div>
+  <div class="total"><%= @running_total + transaction.amount %></div>
+</div>

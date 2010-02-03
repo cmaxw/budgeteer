@@ -5,3 +5,6 @@
 #   
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Major.create(:name => 'Daley', :city => cities.first)
+TransactionType.create(:name => "Debit", :credit => false)
+TransactionType.create(:name => "Deposit", :credit => true)
+TransactionType.create(:name => "Check", :credit => false)

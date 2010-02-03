@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/../spec_helper'
+require 'spec_helper'
  
 describe SessionsController do
   fixtures :all
@@ -10,14 +10,14 @@ describe SessionsController do
   end
   
   it "create action should render new template when authentication is invalid" do
-    User.stubs(:authenticate).returns(nil)
+    User.stub(:authenticate).and_return(nil)
     post :create
     response.should render_template(:new)
     session['user_id'].should be_nil
   end
   
   it "create action should redirect when authentication is valid" do
-    User.stubs(:authenticate).returns(User.first)
+    User.stub(:authenticate).and_return(User.first)
     post :create
     response.should redirect_to(root_url)
     session['user_id'].should == User.first.id
