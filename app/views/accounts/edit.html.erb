@@ -1,3 +1,14 @@
+<% content_for :head do %>
+<script type="text/javascript">
+  $(document).ready(function() {
+  ////
+  // ui.datepicker fields
+  $('.datepicker').each(function() {this.date_picker()});
+});
+</script>
+
+<% end %>
+
 <h1>Editing account</h1>
 
 <% form_for(@account) do |f| %>
@@ -7,19 +18,21 @@
   <%= f.text_field :name %>
 
   <h2>Check Register</h2>
-    <table>
-    <tr class="transaction">
-      <th class="transaction_type">Type</th>
-      <th class="payment_date">Date</th>
-      <th class="payee">Recipient/Description</th>
-      <th class="amount">Amount</th>
-      <th></th>
-    </tr>
+    <div class="register">
+      <div class="register_head">
+        <div class="transaction_type">Type</div>
+        <div class="payment_date">Date</div>
+        <div class="payee">Recipient/Description</div>
+        <div class="amount">Amount</div>
+        <div class="tools"></div>
+      </div>
+      <div class="clear"></div>
 
     <% f.fields_for :transactions do |transactions_form| %>
       <%= render :partial => "transaction_form", :locals => {:f => transactions_form} %>
     <% end %>
-  </table>
+    <%= add_child_link "Add Transaction", f, :transactions %>
+  </div>
   <p>
     <%= f.submit 'Update' %>
   </p>

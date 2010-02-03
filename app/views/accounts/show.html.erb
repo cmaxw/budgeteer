@@ -1,28 +1,38 @@
+<% content_for :head do %>
+  
+<% end %>
+
 <h1><%= @account.name %></h1>
 <%= link_to 'Edit', edit_account_path(@account) %> |
 <%= link_to 'All Accounts', accounts_path %>
 <h2>Check Register</h2>
 <div class="register">
-  <table>
-    <tr class="transaction">
-      <th class="transaction_type">Type</th>
-      <th class="payment_date">Date</th>
-      <th class="payee">Recipient/Description</th>
-      <th class="amount">Amount</th>
-      <th class="total">Balance</th>
-    </tr>
-    <tr class="transaction">
-      <td class="transaction_type"></td>
-      <td class="payment_date"><%= params[:start] || Time.now.beginning_of_month.strftime("%m-%d-%y") %> </td>
-      <td class="payee">Balance Forward</td>
-      <td class="amount">$0.00</td>
-      <td class="total"><%= "-" if @running_total < 0 %>$<%= sprintf("%0.2f", @running_total.abs) %></td>
-    </tr>
-    <%= render :partial => "transaction", :collection => @transactions %>
-  </table>
+  <div class="register_head">
+    <div class="transaction_type">Type</div>
+    <div class="payment_date">Date</div>
+    <div class="payee">Recipient/Description</div>
+    <div class="amount">Amount</div>
+    <div class="balance">Balance</div>
+  </div>
+
+  <div class="clear"></div>
+
+  <div class="transaction">
+    <div class="transaction_type">&nbsp;</div>
+    <div class="payment_date"><%= params[:start] || Time.now.beginning_of_month.strftime("%m-%d-%y") %> </div>
+    <div class="payee">Balance Forward</div>
+    <div class="amount">$0.00</div>
+    <div class="balance"><%= "-" if @running_total < 0 %>$<%= sprintf("%0.2f", @running_total.abs) %></div>
+  </div>
+
+  <div class="clear"></div>
+  
+  <%= render :partial => "transaction", :collection => @transactions %>
+  </div>
   <div class="new_transactions"
     <% form_for @account do |f| %>
-      <%= add_child_link "Add Transaction", f, :transactions %>
+      <p>
+        <%= add_child_link "Add Transaction", f, :transactions %>
+      </p>
     <% end %>
   </div>
-</div>

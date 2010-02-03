@@ -1,9 +1,10 @@
-<tr class="fields">
-  <td><%= f.select :transaction_type_id, TransactionType.all.collect {|tt| [tt.name, tt.id]} %></td>
-  <td><%= f.text_field :payment_date, :value => f.object.payment_date.strftime('%m-%d-%y'), :size => 10 %></td>
-  <td><%= f.text_field :payee %></td>
-  <td><%= f.text_field :amount, :size => 10 %></td>
+<div class="fields">
+  <div class="transaction_type"><%= f.select :transaction_type_id, TransactionType.all.collect {|tt| [tt.name, tt.id]} %></div>
+  <div class="payment_date"><%= f.text_field :payment_date, :value => f.object.payment_date.nil? ? "" : f.object.payment_date.strftime('%m/%d/%Y'), :size => 10, :class => "datepicker" %></div>
+  <div class="payee"><%= f.text_field :payee %></div>
+  <div class="amount"><%= f.text_field :amount, :size => 8 %></div>
 
-  <td><%= remove_child_link "remove", f %></td>
+  <div class="tools"><%= remove_child_link "remove", f %></div>
 
-</tr>
+</div>
+<div class="clear"></div>

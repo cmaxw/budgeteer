@@ -81,6 +81,49 @@ a {
 }
 
 .transaction_type {
-  width: 30px;
+  width: 100px;
   font-weight:inherit;
+  float: left;
+}
+
+.payment_date {
+  width: 100px;
+  font-weight:inherit;
+  float: left;
+}
+
+.payee {
+  width: 300px;
+  font-weight:inherit;
+  float: left;
+}
+
+.amount {
+  width: 80px;
+  font-weight:inherit;
+  float: left;
+}
+
+.balance {
+  width: 80px;
+  font-weight:inherit;
+  float: left;
+}
+
+.tools {
+  width: 100px;
+  font-weight:inherit;
+  float:left;
+}
+
+.register_head {
+  font-weight: bold;
+}
+
+.odd {
+  background-color: #cccccc;
+}
+
+.transaction .amount, .transaction .balance {
+  text-align: right;
 }
