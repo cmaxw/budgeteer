@@ -1813,3 +1813,31 @@ Rendering template within layouts/application
 Rendering accounts/index
   [4;35;1mAccount Columns (1.8ms)[0m   [0mSHOW FIELDS FROM `accounts`[0m
 Completed in 19ms (View: 10, DB: 2) | 200 OK [http://budgeteer.local/accounts]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AccountsController#index (for 127.0.0.1 at 2010-02-03 08:59:34) [GET]
+  Parameters: {"action"=>"index", "controller"=>"accounts"}
+  [4;35;1mAccount Load (0.4ms)[0m   [0mSELECT * FROM `accounts` [0m
+Rendering template within layouts/application
+Rendering accounts/index
+  [4;36;1mAccount Columns (3.4ms)[0m   [0;1mSHOW FIELDS FROM `accounts`[0m
+Completed in 22ms (View: 11, DB: 4) | 200 OK [http://budgeteer.local/accounts]
+  [4;35;1mSQL (0.2ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AccountsController#show (for 127.0.0.1 at 2010-02-03 09:03:14) [GET]
+  Parameters: {"action"=>"show", "id"=>"1", "controller"=>"accounts"}
+  [4;36;1mAccount Columns (1.4ms)[0m   [0;1mSHOW FIELDS FROM `accounts`[0m
+  [4;35;1mAccount Load (1.6ms)[0m   [0mSELECT * FROM `accounts` WHERE (`accounts`.`id` = 1) [0m
+  [4;36;1mTransaction Load (0.4ms)[0m   [0;1mSELECT * FROM `transactions` WHERE (`transactions`.account_id = 1 AND (payment_date > '2010-02-01 00:00:00' and payment_date < '2010-02-04 00:00:00')) [0m
+  [4;35;1mTransaction Columns (1.3ms)[0m   [0mSHOW FIELDS FROM `transactions`[0m
+  [4;36;1mTransactionType Columns (1.3ms)[0m   [0;1mSHOW FIELDS FROM `transaction_types`[0m
+  [4;35;1mTransactionType Load (0.3ms)[0m   [0mSELECT * FROM `transaction_types` WHERE (`transaction_types`.`id` IN (1,2)) [0m
+  [4;36;1mTransaction Load (0.3ms)[0m   [0;1mSELECT * FROM `transactions` WHERE (`transactions`.account_id = 1 AND (payment_date <= '2010-02-02 23:59:59')) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `transaction_types` WHERE (`transaction_types`.`id` IN (1,2)) [0m
+Rendering template within layouts/application
+Rendering accounts/show
+Rendered accounts/_transaction (0.5ms)
+Rendered accounts/_transaction (0.3ms)
+Completed in 35ms (View: 6, DB: 7) | 200 OK [http://budgeteer.local/accounts/1]

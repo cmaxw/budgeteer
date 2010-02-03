@@ -44,6 +44,7 @@ class Account < ActiveRecord::Base
     end_date ||= 1.day.ago
     trans = transactions.find(:all, :include => [:transaction_type], 
       :conditions => "payment_date <= '#{MySQLDates.convert(end_date)} 23:59:59'")
+    # TODO: move this into SQL
     total = 0
     trans.each do |transaction|
       if transaction.transaction_type.credit?

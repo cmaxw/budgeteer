@@ -12713,3 +12713,60 @@ Rendering accounts/show.html.erb
   [4;36;1mAccount Columns (1.4ms)[0m   [0;1mSHOW FIELDS FROM `accounts`[0m
 Rendering accounts/show.html.erb
   [4;35;1mSQL (0.2ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mAccount Columns (1.3ms)[0m   [0;1mSHOW FIELDS FROM `accounts`[0m
+Rendering accounts/index.html.erb
+  [4;35;1mSQL (0.2ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mAccount Columns (1.2ms)[0m   [0;1mSHOW FIELDS FROM `accounts`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mAccount Create (1.6ms)[0m   [0;1mINSERT INTO `accounts` (`name`, `created_at`, `updated_at`, `user_id`) VALUES('test account', '2010-02-03 16:03:00', '2010-02-03 16:03:00', NULL)[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (74.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mAccount Create (0.2ms)[0m   [0mINSERT INTO `accounts` (`name`, `created_at`, `updated_at`, `user_id`) VALUES('test account', '2010-02-03 16:03:00', '2010-02-03 16:03:00', NULL)[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mTransaction Columns (1.5ms)[0m   [0mSHOW FIELDS FROM `transactions`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mTransaction Create (0.3ms)[0m   [0mINSERT INTO `transactions` (`transaction_type_id`, `created_at`, `check_number`, `updated_at`, `amount`, `account_id`, `cleared`, `payment_date`, `payee`) VALUES(NULL, '2010-02-03 16:03:00', NULL, '2010-02-03 16:03:00', NULL, 58, NULL, '2010-02-03 16:03:00', 'ABC Store')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mTransaction Create (0.2ms)[0m   [0;1mINSERT INTO `transactions` (`transaction_type_id`, `created_at`, `check_number`, `updated_at`, `amount`, `account_id`, `cleared`, `payment_date`, `payee`) VALUES(NULL, '2010-02-03 16:03:00', NULL, '2010-02-03 16:03:00', NULL, 58, NULL, '2010-01-03 16:03:00', 'ABC Store')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mTransaction Create (0.4ms)[0m   [0mINSERT INTO `transactions` (`transaction_type_id`, `created_at`, `check_number`, `updated_at`, `amount`, `account_id`, `cleared`, `payment_date`, `payee`) VALUES(NULL, '2010-02-03 16:03:00', NULL, '2010-02-03 16:03:00', NULL, 58, NULL, '2010-01-27 16:03:00', 'ABC Store')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mTransaction Create (0.3ms)[0m   [0;1mINSERT INTO `transactions` (`transaction_type_id`, `created_at`, `check_number`, `updated_at`, `amount`, `account_id`, `cleared`, `payment_date`, `payee`) VALUES(NULL, '2010-02-03 16:03:00', NULL, '2010-02-03 16:03:00', NULL, 58, NULL, '2010-02-02 16:03:00', 'ABC Store')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mTransaction Load (0.4ms)[0m   [0;1mSELECT * FROM `transactions` WHERE (`transactions`.account_id = 58 AND (payment_date > '2010-01-04 00:00:00' and payment_date < '2010-02-03 00:00:00')) [0m
+  [4;35;1mSQL (0.7ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mAccount Create (0.2ms)[0m   [0;1mINSERT INTO `accounts` (`name`, `created_at`, `updated_at`, `user_id`) VALUES('test account', '2010-02-03 16:03:00', '2010-02-03 16:03:00', NULL)[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mTransactionType Columns (1.3ms)[0m   [0;1mSHOW FIELDS FROM `transaction_types`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mTransactionType Create (0.3ms)[0m   [0;1mINSERT INTO `transaction_types` (`name`, `created_at`, `updated_at`, `credit`) VALUES('Debit', '2010-02-03 16:03:00', '2010-02-03 16:03:00', 0)[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mTransactionType Create (0.3ms)[0m   [0mINSERT INTO `transaction_types` (`name`, `created_at`, `updated_at`, `credit`) VALUES('Credit', '2010-02-03 16:03:00', '2010-02-03 16:03:00', 1)[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.8ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mTransaction Create (0.3ms)[0m   [0;1mINSERT INTO `transactions` (`transaction_type_id`, `created_at`, `check_number`, `updated_at`, `amount`, `account_id`, `cleared`, `payment_date`, `payee`) VALUES(980190992, '2010-02-03 16:03:00', NULL, '2010-02-03 16:03:00', 100.0, 59, NULL, '2010-02-03 16:03:00', 'ABC Store')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mTransaction Create (0.2ms)[0m   [0mINSERT INTO `transactions` (`transaction_type_id`, `created_at`, `check_number`, `updated_at`, `amount`, `account_id`, `cleared`, `payment_date`, `payee`) VALUES(980190991, '2010-02-03 16:03:00', NULL, '2010-02-03 16:03:00', 12.0, 59, NULL, '2010-01-03 16:03:00', 'ABC Store')[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mTransaction Create (0.3ms)[0m   [0;1mINSERT INTO `transactions` (`transaction_type_id`, `created_at`, `check_number`, `updated_at`, `amount`, `account_id`, `cleared`, `payment_date`, `payee`) VALUES(980190992, '2010-02-03 16:03:00', NULL, '2010-02-03 16:03:00', 15.0, 59, NULL, '2010-01-27 16:03:00', 'ABC Store')[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mTransaction Create (0.3ms)[0m   [0mINSERT INTO `transactions` (`transaction_type_id`, `created_at`, `check_number`, `updated_at`, `amount`, `account_id`, `cleared`, `payment_date`, `payee`) VALUES(980190992, '2010-02-03 16:03:00', NULL, '2010-02-03 16:03:00', 100.0, 59, NULL, '2010-02-02 16:03:00', 'ABC Store')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mTransaction Load (0.3ms)[0m   [0mSELECT * FROM `transactions` WHERE (`transactions`.account_id = 59 AND (payment_date <= '2010-02-02 23:59:59')) [0m
+  [4;36;1mTransactionType Load (0.2ms)[0m   [0;1mSELECT * FROM `transaction_types` WHERE (`transaction_types`.`id` IN (980190991,980190992)) [0m
+  [4;35;1mSQL (0.6ms)[0m   [0mROLLBACK[0m
