@@ -1,6 +1,9 @@
-<%#
-# To change this template, choose Tools | Templates
-# and open the template in the editor.
-%>
+<tr class="fields">
+  <td><%= f.select :transaction_type_id, TransactionType.all.collect {|tt| [tt.name, tt.id]} %></td>
+  <td><%= f.text_field :payment_date, :value => f.object.payment_date.strftime('%m-%d-%y'), :size => 10 %></td>
+  <td><%= f.text_field :payee %></td>
+  <td><%= f.text_field :amount, :size => 10 %></td>
 
-<%= "_transaction_form.html" %>
+  <td><%= remove_child_link "remove", f %></td>
+
+</tr>

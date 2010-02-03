@@ -14,6 +14,8 @@ require 'mysql_dates'
 class Account < ActiveRecord::Base
   belongs_to :user
   has_many :transactions
+  accepts_nested_attributes_for :transactions, :reject_if => lambda { |a| a.values.all?(&:blank?) }, :allow_destroy => true
+
 
   def transactions_by_date_range(start = Time.now.beginning_of_month, finish = Time.now)
     unless start.is_a?(DateTime)

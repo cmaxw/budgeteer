@@ -79,3 +79,8 @@ a {
   font-size: 12px;
   list-style: disc;
 }
+
+.transaction_type {
+  width: 30px;
+  font-weight:inherit;
+}

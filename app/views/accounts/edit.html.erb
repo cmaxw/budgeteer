@@ -3,6 +3,23 @@
 <% form_for(@account) do |f| %>
   <%= f.error_messages %>
 
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <h2>Check Register</h2>
+    <table>
+    <tr class="transaction">
+      <th class="transaction_type">Type</th>
+      <th class="payment_date">Date</th>
+      <th class="payee">Recipient/Description</th>
+      <th class="amount">Amount</th>
+      <th></th>
+    </tr>
+
+    <% f.fields_for :transactions do |transactions_form| %>
+      <%= render :partial => "transaction_form", :locals => {:f => transactions_form} %>
+    <% end %>
+  </table>
   <p>
     <%= f.submit 'Update' %>
   </p>

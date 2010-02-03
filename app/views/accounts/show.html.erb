@@ -4,14 +4,14 @@
 <h2>Check Register</h2>
 <div class="register">
   <table>
-    <tr class="transaction <%= cycle("odd", "even") %>">
+    <tr class="transaction">
       <th class="transaction_type">Type</th>
       <th class="payment_date">Date</th>
       <th class="payee">Recipient/Description</th>
       <th class="amount">Amount</th>
       <th class="total">Balance</th>
     </tr>
-    <tr class="transaction <%= cycle("odd", "even") %>">
+    <tr class="transaction">
       <td class="transaction_type"></td>
       <td class="payment_date"><%= params[:start] || Time.now.beginning_of_month.strftime("%m-%d-%y") %> </td>
       <td class="payee">Balance Forward</td>
@@ -20,4 +20,9 @@
     </tr>
     <%= render :partial => "transaction", :collection => @transactions %>
   </table>
+  <div class="new_transactions"
+    <% form_for @account do |f| %>
+      <%= add_child_link "Add Transaction", f, :transactions %>
+    <% end %>
+  </div>
 </div>
