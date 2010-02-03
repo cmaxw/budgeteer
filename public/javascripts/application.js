@@ -2,7 +2,7 @@
 // This file is automatically included by javascript_include_tag :defaults
 function insert_fields(link, method, content) {
   var new_id = new Date().getTime();
-  var regexp = new RegExp("new_" + method, "g")
+  var regexp = new RegExp("new_" + method, "g");
   $(link).parent().before(
     content.replace(regexp, new_id)
     );

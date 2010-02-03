@@ -19,7 +19,7 @@
 
   <div class="transaction">
     <div class="transaction_type">&nbsp;</div>
-    <div class="payment_date"><%= params[:start] || Time.now.beginning_of_month.strftime("%m-%d-%y") %> </div>
+    <div class="payment_date"><%= params[:start] || Time.now.beginning_of_month.strftime("%m/%d/%Y") %> </div>
     <div class="payee">Balance Forward</div>
     <div class="amount">$0.00</div>
     <div class="balance"><%= "-" if @running_total < 0 %>$<%= sprintf("%0.2f", @running_total.abs) %></div>

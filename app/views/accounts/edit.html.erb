@@ -31,7 +31,9 @@
     <% f.fields_for :transactions do |transactions_form| %>
       <%= render :partial => "transaction_form", :locals => {:f => transactions_form} %>
     <% end %>
+      <p>
     <%= add_child_link "Add Transaction", f, :transactions %>
+      </p>
   </div>
   <p>
     <%= f.submit 'Update' %>
