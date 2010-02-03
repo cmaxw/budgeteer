@@ -1,7 +1,8 @@
-<div class="transaction <%= cycle("odd", "even") %>">
-  <div class="transaction_type"><%= transaction.transaction_type.name %></div>
-  <div class="payment_date"><%= transaction.payment_date %></div>
-  <div class="payee"><%= transaction.payee %></div>
-  <div class="amount"><%= transaction.amount %></div>
-  <div class="total"><%= @running_total + transaction.amount %></div>
-</div>
+<% @running_total = adjust_total(@running_total, transaction) %>
+<tr class="transaction <%= cycle("odd", "even") %>">
+  <td class="transaction_type"><%= transaction.transaction_type.name %></td>
+  <td class="payment_date"><%= transaction.payment_date.strftime("%m-%d-%y") %></td>
+  <td class="payee"><%= transaction.payee %></td>
+  <td class="amount"><%= "-" unless transaction.transaction_type.credit? %>$<%= sprintf("%0.2f",transaction.amount) %></td>
+  <td class="total"><%= "-" if @running_total < 0 %>$<%= sprintf("%0.2f", @running_total.abs) %></td>
+</tr>

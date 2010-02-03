@@ -16,7 +16,7 @@ describe AccountsController do
 
   describe "GET show" do
     it "assigns the requested account as @account" do
-      Account.stub(:find).with("37").and_return(mock_account(:transactions_by_date_range => []))
+      Account.stub(:find).with("37").and_return(mock_account(:transactions_by_date_range => [], :tally => 100))
       get :show, :id => "37"
       assigns[:account].should equal(mock_account)
     end

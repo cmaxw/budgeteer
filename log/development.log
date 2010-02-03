@@ -1057,3 +1057,759 @@ Migrating to AddCreditToTransactionTypes (20100203081026)
   [4;36;1mSQL (0.7ms)[0m   [0;1mINSERT INTO `schema_migrations` (version) VALUES ('20100202034824')[0m
   [4;35;1mSQL (0.4ms)[0m   [0mINSERT INTO `schema_migrations` (version) VALUES ('20100202035923')[0m
   [4;36;1mSQL (0.5ms)[0m   [0;1mINSERT INTO `schema_migrations` (version) VALUES ('20100203072129')[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mSQL (57.2ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+Migrating to CreateTransactionTypes (20100202033517)
+Migrating to CreateTransactions (20100202033800)
+Migrating to CreateCategories (20100202033945)
+Migrating to CreateUsers (20100202034824)
+Migrating to CreateAccounts (20100202035923)
+Migrating to AddAccountIdToTransactions (20100203072129)
+Migrating to AddCreditToTransactionTypes (20100203081026)
+  [4;35;1mSQL (0.9ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (24.6ms)[0m   [0;1mSHOW FIELDS FROM `accounts`[0m
+  [4;35;1mSQL (1.3ms)[0m   [0mdescribe `accounts`[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mSHOW KEYS FROM `accounts`[0m
+  [4;35;1mSQL (1.1ms)[0m   [0mSHOW FIELDS FROM `categories`[0m
+  [4;36;1mSQL (2.9ms)[0m   [0;1mdescribe `categories`[0m
+  [4;35;1mSQL (0.6ms)[0m   [0mSHOW KEYS FROM `categories`[0m
+  [4;36;1mSQL (2.5ms)[0m   [0;1mSHOW FIELDS FROM `transaction_types`[0m
+  [4;35;1mSQL (1.7ms)[0m   [0mdescribe `transaction_types`[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW KEYS FROM `transaction_types`[0m
+  [4;35;1mSQL (1.2ms)[0m   [0mSHOW FIELDS FROM `transactions`[0m
+  [4;36;1mSQL (2.3ms)[0m   [0;1mdescribe `transactions`[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSHOW KEYS FROM `transactions`[0m
+  [4;36;1mSQL (1.6ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mSQL (1.4ms)[0m   [0mdescribe `users`[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mSHOW KEYS FROM `users`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AccountsController#create (for 127.0.0.1 at 2010-02-03 07:29:41) [POST]
+  Parameters: {"commit"=>"Create", "action"=>"create", "authenticity_token"=>"cDyd4u4DCuk01zQWz8AFzwQJLNXNTsj1nHqSI+24Cw8=", "account"=>{"name"=>"American Express"}, "controller"=>"accounts"}
+  [4;35;1mAccount Columns (102.4ms)[0m   [0mSHOW FIELDS FROM `accounts`[0m
+  [4;36;1mSQL (8.5ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mAccount Create (0.6ms)[0m   [0mINSERT INTO `accounts` (`name`, `created_at`, `updated_at`, `user_id`) VALUES('American Express', '2010-02-03 14:29:41', '2010-02-03 14:29:41', NULL)[0m
+  [4;36;1mSQL (6.1ms)[0m   [0;1mCOMMIT[0m
+Redirected to http://budgeteer.local/accounts/1
+Completed in 607ms (DB: 118) | 302 Found [http://budgeteer.local/accounts]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AccountsController#show (for 127.0.0.1 at 2010-02-03 07:29:42) [GET]
+  Parameters: {"action"=>"show", "id"=>"1", "controller"=>"accounts"}
+  [4;36;1mAccount Columns (129.7ms)[0m   [0;1mSHOW FIELDS FROM `accounts`[0m
+  [4;35;1mAccount Load (57.5ms)[0m   [0mSELECT * FROM `accounts` WHERE (`accounts`.`id` = 1) [0m
+
+NoMethodError (undefined method `strftime' for nil:NilClass):
+  lib/mysql_dates.rb:3:in `convert'
+  app/models/account.rb:33:in `transactions_by_date_range'
+  app/controllers/accounts_controller.rb:17:in `show'
+  passenger (2.2.5) lib/phusion_passenger/rack/request_handler.rb:95:in `process_request'
+  passenger (2.2.5) lib/phusion_passenger/abstract_request_handler.rb:207:in `main_loop'
+  passenger (2.2.5) lib/phusion_passenger/railz/application_spawner.rb:378:in `start_request_handler'
+  passenger (2.2.5) lib/phusion_passenger/railz/application_spawner.rb:336:in `handle_spawn_application'
+  passenger (2.2.5) lib/phusion_passenger/utils.rb:183:in `safe_fork'
+  passenger (2.2.5) lib/phusion_passenger/railz/application_spawner.rb:334:in `handle_spawn_application'
+  passenger (2.2.5) lib/phusion_passenger/abstract_server.rb:352:in `__send__'
+  passenger (2.2.5) lib/phusion_passenger/abstract_server.rb:352:in `main_loop'
+  passenger (2.2.5) lib/phusion_passenger/abstract_server.rb:196:in `start_synchronously'
+  passenger (2.2.5) lib/phusion_passenger/abstract_server.rb:163:in `start'
+  passenger (2.2.5) lib/phusion_passenger/railz/application_spawner.rb:213:in `start'
+  passenger (2.2.5) lib/phusion_passenger/spawn_manager.rb:262:in `spawn_rails_application'
+  passenger (2.2.5) lib/phusion_passenger/abstract_server_collection.rb:126:in `lookup_or_add'
+  passenger (2.2.5) lib/phusion_passenger/spawn_manager.rb:256:in `spawn_rails_application'
+  passenger (2.2.5) lib/phusion_passenger/abstract_server_collection.rb:80:in `synchronize'
+  passenger (2.2.5) lib/phusion_passenger/abstract_server_collection.rb:79:in `synchronize'
+  passenger (2.2.5) lib/phusion_passenger/spawn_manager.rb:255:in `spawn_rails_application'
+  passenger (2.2.5) lib/phusion_passenger/spawn_manager.rb:154:in `spawn_application'
+  passenger (2.2.5) lib/phusion_passenger/spawn_manager.rb:287:in `handle_spawn_application'
+  passenger (2.2.5) lib/phusion_passenger/abstract_server.rb:352:in `__send__'
+  passenger (2.2.5) lib/phusion_passenger/abstract_server.rb:352:in `main_loop'
+  passenger (2.2.5) lib/phusion_passenger/abstract_server.rb:196:in `start_synchronously'
+
+Rendered rescues/_trace (8426.6ms)
+Rendered rescues/_request_and_response (1.7ms)
+Rendering rescues/layout (internal_server_error)
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AccountsController#show (for 127.0.0.1 at 2010-02-03 07:32:13) [GET]
+  Parameters: {"action"=>"show", "id"=>"1", "controller"=>"accounts"}
+  [4;35;1mAccount Columns (177.9ms)[0m   [0mSHOW FIELDS FROM `accounts`[0m
+  [4;36;1mAccount Load (230.8ms)[0m   [0;1mSELECT * FROM `accounts` WHERE (`accounts`.`id` = 1) [0m
+
+
+NoMethodError (undefined method `strftime' for nil:NilClass):
+  lib/mysql_dates.rb:3:in `convert'
+  app/models/account.rb:34:in `transactions_by_date_range'
+  app/controllers/accounts_controller.rb:17:in `show'
+  passenger (2.2.5) lib/phusion_passenger/rack/request_handler.rb:95:in `process_request'
+  passenger (2.2.5) lib/phusion_passenger/abstract_request_handler.rb:207:in `main_loop'
+  passenger (2.2.5) lib/phusion_passenger/railz/application_spawner.rb:378:in `start_request_handler'
+  passenger (2.2.5) lib/phusion_passenger/railz/application_spawner.rb:336:in `handle_spawn_application'
+  passenger (2.2.5) lib/phusion_passenger/utils.rb:183:in `safe_fork'
+  passenger (2.2.5) lib/phusion_passenger/railz/application_spawner.rb:334:in `handle_spawn_application'
+  passenger (2.2.5) lib/phusion_passenger/abstract_server.rb:352:in `__send__'
+  passenger (2.2.5) lib/phusion_passenger/abstract_server.rb:352:in `main_loop'
+  passenger (2.2.5) lib/phusion_passenger/abstract_server.rb:196:in `start_synchronously'
+  passenger (2.2.5) lib/phusion_passenger/abstract_server.rb:163:in `start'
+  passenger (2.2.5) lib/phusion_passenger/railz/application_spawner.rb:213:in `start'
+  passenger (2.2.5) lib/phusion_passenger/spawn_manager.rb:262:in `spawn_rails_application'
+  passenger (2.2.5) lib/phusion_passenger/abstract_server_collection.rb:126:in `lookup_or_add'
+  passenger (2.2.5) lib/phusion_passenger/spawn_manager.rb:256:in `spawn_rails_application'
+  passenger (2.2.5) lib/phusion_passenger/abstract_server_collection.rb:80:in `synchronize'
+  passenger (2.2.5) lib/phusion_passenger/abstract_server_collection.rb:79:in `synchronize'
+  passenger (2.2.5) lib/phusion_passenger/spawn_manager.rb:255:in `spawn_rails_application'
+  passenger (2.2.5) lib/phusion_passenger/spawn_manager.rb:154:in `spawn_application'
+  passenger (2.2.5) lib/phusion_passenger/spawn_manager.rb:287:in `handle_spawn_application'
+  passenger (2.2.5) lib/phusion_passenger/abstract_server.rb:352:in `__send__'
+  passenger (2.2.5) lib/phusion_passenger/abstract_server.rb:352:in `main_loop'
+  passenger (2.2.5) lib/phusion_passenger/abstract_server.rb:196:in `start_synchronously'
+
+Rendered rescues/_trace (48.7ms)
+Rendered rescues/_request_and_response (0.4ms)
+Rendering rescues/layout (internal_server_error)
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mAccount Load (0.4ms)[0m   [0mSELECT * FROM `accounts` LIMIT 1[0m
+  [4;36;1mAccount Columns (1.4ms)[0m   [0;1mSHOW FIELDS FROM `accounts`[0m
+  [4;35;1mTransaction Load (0.6ms)[0m   [0mSELECT * FROM `transactions` WHERE (`transactions`.account_id = 1 AND (payment_date > '2010-02-01 00:00:00' and payment_date < '2010-02-04 00:00:00')) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AccountsController#show (for 127.0.0.1 at 2010-02-03 07:36:03) [GET]
+  Parameters: {"action"=>"show", "id"=>"1", "controller"=>"accounts"}
+  [4;36;1mAccount Columns (1.4ms)[0m   [0;1mSHOW FIELDS FROM `accounts`[0m
+  [4;35;1mAccount Load (0.6ms)[0m   [0mSELECT * FROM `accounts` WHERE (`accounts`.`id` = 1) [0m
+
+NoMethodError (undefined method `strftime' for nil:NilClass):
+  lib/mysql_dates.rb:3:in `convert'
+  app/models/account.rb:34:in `transactions_by_date_range'
+  app/controllers/accounts_controller.rb:17:in `show'
+  passenger (2.2.5) lib/phusion_passenger/rack/request_handler.rb:95:in `process_request'
+  passenger (2.2.5) lib/phusion_passenger/abstract_request_handler.rb:207:in `main_loop'
+  passenger (2.2.5) lib/phusion_passenger/railz/application_spawner.rb:378:in `start_request_handler'
+  passenger (2.2.5) lib/phusion_passenger/railz/application_spawner.rb:336:in `handle_spawn_application'
+  passenger (2.2.5) lib/phusion_passenger/utils.rb:183:in `safe_fork'
+  passenger (2.2.5) lib/phusion_passenger/railz/application_spawner.rb:334:in `handle_spawn_application'
+  passenger (2.2.5) lib/phusion_passenger/abstract_server.rb:352:in `__send__'
+  passenger (2.2.5) lib/phusion_passenger/abstract_server.rb:352:in `main_loop'
+  passenger (2.2.5) lib/phusion_passenger/abstract_server.rb:196:in `start_synchronously'
+  passenger (2.2.5) lib/phusion_passenger/abstract_server.rb:163:in `start'
+  passenger (2.2.5) lib/phusion_passenger/railz/application_spawner.rb:213:in `start'
+  passenger (2.2.5) lib/phusion_passenger/spawn_manager.rb:262:in `spawn_rails_application'
+  passenger (2.2.5) lib/phusion_passenger/abstract_server_collection.rb:126:in `lookup_or_add'
+  passenger (2.2.5) lib/phusion_passenger/spawn_manager.rb:256:in `spawn_rails_application'
+  passenger (2.2.5) lib/phusion_passenger/abstract_server_collection.rb:80:in `synchronize'
+  passenger (2.2.5) lib/phusion_passenger/abstract_server_collection.rb:79:in `synchronize'
+  passenger (2.2.5) lib/phusion_passenger/spawn_manager.rb:255:in `spawn_rails_application'
+  passenger (2.2.5) lib/phusion_passenger/spawn_manager.rb:154:in `spawn_application'
+  passenger (2.2.5) lib/phusion_passenger/spawn_manager.rb:287:in `handle_spawn_application'
+  passenger (2.2.5) lib/phusion_passenger/abstract_server.rb:352:in `__send__'
+  passenger (2.2.5) lib/phusion_passenger/abstract_server.rb:352:in `main_loop'
+  passenger (2.2.5) lib/phusion_passenger/abstract_server.rb:196:in `start_synchronously'
+
+Rendered rescues/_trace (118.3ms)
+Rendered rescues/_request_and_response (0.4ms)
+Rendering rescues/layout (internal_server_error)
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AccountsController#show (for 127.0.0.1 at 2010-02-03 07:36:24) [GET]
+  Parameters: {"action"=>"show", "id"=>"1", "controller"=>"accounts"}
+  [4;35;1mAccount Columns (1.5ms)[0m   [0mSHOW FIELDS FROM `accounts`[0m
+  [4;36;1mAccount Load (0.3ms)[0m   [0;1mSELECT * FROM `accounts` WHERE (`accounts`.`id` = 1) [0m
+
+NoMethodError (undefined method `strftime' for nil:NilClass):
+  lib/mysql_dates.rb:3:in `convert'
+  app/models/account.rb:34:in `transactions_by_date_range'
+  app/controllers/accounts_controller.rb:17:in `show'
+
+Rendered rescues/_trace (48.1ms)
+Rendered rescues/_request_and_response (2.3ms)
+Rendering rescues/layout (internal_server_error)
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AccountsController#show (for 127.0.0.1 at 2010-02-03 07:37:46) [GET]
+  Parameters: {"action"=>"show", "id"=>"1", "controller"=>"accounts"}
+  [4;36;1mAccount Columns (1.4ms)[0m   [0;1mSHOW FIELDS FROM `accounts`[0m
+  [4;35;1mAccount Load (0.4ms)[0m   [0mSELECT * FROM `accounts` WHERE (`accounts`.`id` = 1) [0m
+  [4;36;1mTransaction Load (0.5ms)[0m   [0;1mSELECT * FROM `transactions` WHERE (`transactions`.account_id = 1 AND (payment_date > '2010-02-01 00:00:00' and payment_date < '2010-02-04 00:00:00')) [0m
+Rendering template within layouts/application
+Rendering accounts/show
+Completed in 85ms (View: 70, DB: 2) | 200 OK [http://localhost/accounts/1]
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing TransactionsController#new (for 127.0.0.1 at 2010-02-03 07:39:58) [GET]
+  Parameters: {"action"=>"new", "controller"=>"transactions"}
+  [4;35;1mTransaction Columns (1.9ms)[0m   [0mSHOW FIELDS FROM `transactions`[0m
+Rendering template within layouts/transactions
+Rendering transactions/new
+Completed in 26ms (View: 17, DB: 2) | 200 OK [http://budgeteer.local/transactions/new]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing TransactionsController#new (for 127.0.0.1 at 2010-02-03 07:40:46) [GET]
+  Parameters: {"action"=>"new", "controller"=>"transactions"}
+  [4;35;1mTransaction Columns (2.7ms)[0m   [0mSHOW FIELDS FROM `transactions`[0m
+Rendering template within layouts/application
+Rendering transactions/new
+Completed in 25ms (View: 16, DB: 3) | 200 OK [http://budgeteer.local/transactions/new]
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mAccount Load (0.3ms)[0m   [0mSELECT * FROM `accounts` LIMIT 1[0m
+  [4;36;1mAccount Columns (1.2ms)[0m   [0;1mSHOW FIELDS FROM `accounts`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mTransactionType Columns (1.2ms)[0m   [0mSHOW FIELDS FROM `transaction_types`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mTransactionType Create (0.4ms)[0m   [0mINSERT INTO `transaction_types` (`name`, `created_at`, `updated_at`, `credit`) VALUES('Debit', '2010-02-03 15:01:22', '2010-02-03 15:01:22', 0)[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mTransactionType Create (0.7ms)[0m   [0;1mINSERT INTO `transaction_types` (`name`, `created_at`, `updated_at`, `credit`) VALUES('Deposit', '2010-02-03 15:01:22', '2010-02-03 15:01:22', 1)[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mTransactionType Create (0.2ms)[0m   [0mINSERT INTO `transaction_types` (`name`, `created_at`, `updated_at`, `credit`) VALUES('Check', '2010-02-03 15:01:22', '2010-02-03 15:01:22', 0)[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mTransactionType Create (0.2ms)[0m   [0;1mINSERT INTO `transaction_types` (`name`, `created_at`, `updated_at`, `credit`) VALUES('Payment', '2010-02-03 15:01:22', '2010-02-03 15:01:22', 1)[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mAccount Load (0.3ms)[0m   [0mSELECT * FROM `accounts` LIMIT 1[0m
+  [4;36;1mAccount Columns (1.2ms)[0m   [0;1mSHOW FIELDS FROM `accounts`[0m
+  [4;35;1mTransactionType Columns (1.9ms)[0m   [0mSHOW FIELDS FROM `transaction_types`[0m
+  [4;36;1mTransactionType Load (0.9ms)[0m   [0;1mSELECT * FROM `transaction_types` WHERE (`transaction_types`.`name` = 'Debit') LIMIT 1[0m
+  [4;35;1mTransactionType Load (0.4ms)[0m   [0mSELECT * FROM `transaction_types` WHERE (`transaction_types`.`name` = 'Debit') LIMIT 1[0m
+  [4;36;1mTransaction Columns (1.3ms)[0m   [0;1mSHOW FIELDS FROM `transactions`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mBEGIN[0m
+  [4;36;1mTransaction Create (0.3ms)[0m   [0;1mINSERT INTO `transactions` (`transaction_type_id`, `created_at`, `check_number`, `updated_at`, `amount`, `account_id`, `cleared`, `payment_date`, `payee`) VALUES(1, '2010-02-03 15:03:31', NULL, '2010-02-03 15:03:31', 10.0, 1, NULL, '2010-02-02 15:03:31', 'George')[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mCOMMIT[0m
+  [4;36;1mTransactionType Load (0.4ms)[0m   [0;1mSELECT * FROM `transaction_types` WHERE (`transaction_types`.`name` = 'Deposit') LIMIT 1[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mBEGIN[0m
+  [4;36;1mTransaction Create (0.3ms)[0m   [0;1mINSERT INTO `transactions` (`transaction_type_id`, `created_at`, `check_number`, `updated_at`, `amount`, `account_id`, `cleared`, `payment_date`, `payee`) VALUES(2, '2010-02-03 15:03:43', NULL, '2010-02-03 15:03:43', 10.0, 1, NULL, '2010-02-02 15:03:43', 'George')[0m
+  [4;35;1mSQL (0.8ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SiteController#index (for 127.0.0.1 at 2010-02-03 08:04:33) [GET]
+  Parameters: {"action"=>"index", "controller"=>"site"}
+  [4;35;1mUser Columns (1.8ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.4ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 1) [0m
+
+ActiveRecord::RecordNotFound (Couldn't find User with ID=1):
+  lib/authentication.rb:24:in `current_user'
+  app/controllers/site_controller.rb:3:in `index'
+  passenger (2.2.5) lib/phusion_passenger/rack/request_handler.rb:95:in `process_request'
+  passenger (2.2.5) lib/phusion_passenger/abstract_request_handler.rb:207:in `main_loop'
+  passenger (2.2.5) lib/phusion_passenger/railz/application_spawner.rb:378:in `start_request_handler'
+  passenger (2.2.5) lib/phusion_passenger/railz/application_spawner.rb:336:in `handle_spawn_application'
+  passenger (2.2.5) lib/phusion_passenger/utils.rb:183:in `safe_fork'
+  passenger (2.2.5) lib/phusion_passenger/railz/application_spawner.rb:334:in `handle_spawn_application'
+  passenger (2.2.5) lib/phusion_passenger/abstract_server.rb:352:in `__send__'
+  passenger (2.2.5) lib/phusion_passenger/abstract_server.rb:352:in `main_loop'
+  passenger (2.2.5) lib/phusion_passenger/abstract_server.rb:196:in `start_synchronously'
+  passenger (2.2.5) lib/phusion_passenger/abstract_server.rb:163:in `start'
+  passenger (2.2.5) lib/phusion_passenger/railz/application_spawner.rb:213:in `start'
+  passenger (2.2.5) lib/phusion_passenger/spawn_manager.rb:262:in `spawn_rails_application'
+  passenger (2.2.5) lib/phusion_passenger/abstract_server_collection.rb:126:in `lookup_or_add'
+  passenger (2.2.5) lib/phusion_passenger/spawn_manager.rb:256:in `spawn_rails_application'
+  passenger (2.2.5) lib/phusion_passenger/abstract_server_collection.rb:80:in `synchronize'
+  passenger (2.2.5) lib/phusion_passenger/abstract_server_collection.rb:79:in `synchronize'
+  passenger (2.2.5) lib/phusion_passenger/spawn_manager.rb:255:in `spawn_rails_application'
+  passenger (2.2.5) lib/phusion_passenger/spawn_manager.rb:154:in `spawn_application'
+  passenger (2.2.5) lib/phusion_passenger/spawn_manager.rb:287:in `handle_spawn_application'
+  passenger (2.2.5) lib/phusion_passenger/abstract_server.rb:352:in `__send__'
+  passenger (2.2.5) lib/phusion_passenger/abstract_server.rb:352:in `main_loop'
+  passenger (2.2.5) lib/phusion_passenger/abstract_server.rb:196:in `start_synchronously'
+
+Rendered rescues/_trace (163.1ms)
+Rendered rescues/_request_and_response (2.2ms)
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.2ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AccountsController#show (for 127.0.0.1 at 2010-02-03 08:04:42) [GET]
+  Parameters: {"action"=>"show", "id"=>"1", "controller"=>"accounts"}
+  [4;36;1mAccount Columns (1.4ms)[0m   [0;1mSHOW FIELDS FROM `accounts`[0m
+  [4;35;1mAccount Load (0.6ms)[0m   [0mSELECT * FROM `accounts` WHERE (`accounts`.`id` = 1) [0m
+  [4;36;1mTransaction Load (0.5ms)[0m   [0;1mSELECT * FROM `transactions` WHERE (`transactions`.account_id = 1 AND (payment_date > '2010-02-01 00:00:00' and payment_date < '2010-02-04 00:00:00')) [0m
+Rendering template within layouts/application
+Rendering accounts/show
+
+ActionView::TemplateError (Missing template accounts/_register_line.erb in view path app/views) on line #6 of app/views/accounts/show.html.erb:
+3: <%= link_to 'All Accounts', accounts_path %>
+4: <h2>Check Register</h2>
+5: <div class="register">
+6: <%= render :partial => "register_line", :collection => @transactions %>
+7: </div>
+
+    app/views/accounts/show.html.erb:6
+    app/controllers/accounts_controller.rb:19:in `show'
+    passenger (2.2.5) lib/phusion_passenger/rack/request_handler.rb:95:in `process_request'
+    passenger (2.2.5) lib/phusion_passenger/abstract_request_handler.rb:207:in `main_loop'
+    passenger (2.2.5) lib/phusion_passenger/railz/application_spawner.rb:378:in `start_request_handler'
+    passenger (2.2.5) lib/phusion_passenger/railz/application_spawner.rb:336:in `handle_spawn_application'
+    passenger (2.2.5) lib/phusion_passenger/utils.rb:183:in `safe_fork'
+    passenger (2.2.5) lib/phusion_passenger/railz/application_spawner.rb:334:in `handle_spawn_application'
+    passenger (2.2.5) lib/phusion_passenger/abstract_server.rb:352:in `__send__'
+    passenger (2.2.5) lib/phusion_passenger/abstract_server.rb:352:in `main_loop'
+    passenger (2.2.5) lib/phusion_passenger/abstract_server.rb:196:in `start_synchronously'
+    passenger (2.2.5) lib/phusion_passenger/abstract_server.rb:163:in `start'
+    passenger (2.2.5) lib/phusion_passenger/railz/application_spawner.rb:213:in `start'
+    passenger (2.2.5) lib/phusion_passenger/spawn_manager.rb:262:in `spawn_rails_application'
+    passenger (2.2.5) lib/phusion_passenger/abstract_server_collection.rb:126:in `lookup_or_add'
+    passenger (2.2.5) lib/phusion_passenger/spawn_manager.rb:256:in `spawn_rails_application'
+    passenger (2.2.5) lib/phusion_passenger/abstract_server_collection.rb:80:in `synchronize'
+    passenger (2.2.5) lib/phusion_passenger/abstract_server_collection.rb:79:in `synchronize'
+    passenger (2.2.5) lib/phusion_passenger/spawn_manager.rb:255:in `spawn_rails_application'
+    passenger (2.2.5) lib/phusion_passenger/spawn_manager.rb:154:in `spawn_application'
+    passenger (2.2.5) lib/phusion_passenger/spawn_manager.rb:287:in `handle_spawn_application'
+    passenger (2.2.5) lib/phusion_passenger/abstract_server.rb:352:in `__send__'
+    passenger (2.2.5) lib/phusion_passenger/abstract_server.rb:352:in `main_loop'
+    passenger (2.2.5) lib/phusion_passenger/abstract_server.rb:196:in `start_synchronously'
+
+Rendered rescues/_trace (58.2ms)
+Rendered rescues/_request_and_response (0.6ms)
+Rendering rescues/layout (internal_server_error)
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AccountsController#show (for 127.0.0.1 at 2010-02-03 08:05:03) [GET]
+  Parameters: {"action"=>"show", "id"=>"1", "controller"=>"accounts"}
+  [4;36;1mAccount Columns (2.1ms)[0m   [0;1mSHOW FIELDS FROM `accounts`[0m
+  [4;35;1mAccount Load (1.0ms)[0m   [0mSELECT * FROM `accounts` WHERE (`accounts`.`id` = 1) [0m
+  [4;36;1mTransaction Load (0.5ms)[0m   [0;1mSELECT * FROM `transactions` WHERE (`transactions`.account_id = 1 AND (payment_date > '2010-02-01 00:00:00' and payment_date < '2010-02-04 00:00:00')) [0m
+Rendering template within layouts/application
+Rendering accounts/show
+  [4;35;1mTransaction Columns (1.8ms)[0m   [0mSHOW FIELDS FROM `transactions`[0m
+  [4;36;1mTransactionType Columns (1.8ms)[0m   [0;1mSHOW FIELDS FROM `transaction_types`[0m
+  [4;35;1mTransactionType Load (23.5ms)[0m   [0mSELECT * FROM `transaction_types` WHERE (`transaction_types`.`id` = 1) [0m
+
+ActionView::TemplateError (You have a nil object when you didn't expect it!
+You might have expected an instance of Array.
+The error occurred while evaluating nil.-) on line #6 of app/views/accounts/_transaction.html.erb:
+3:   <div class="payment_date"><%= transaction.payment_date %></div>
+4:   <div class="payee"><%= transaction.payee %></div>
+5:   <div class="amount"><%= transaction.amount %></div>
+6:   <div class="total"><%= @running_total = adjust_total(@running_total, transaction) %></div>
+7: </div>
+
+    app/helpers/account_helper.rb:6:in `adjust_total'
+    app/views/accounts/_transaction.html.erb:6
+    app/views/accounts/show.html.erb:6
+    app/controllers/accounts_controller.rb:19:in `show'
+    passenger (2.2.5) lib/phusion_passenger/rack/request_handler.rb:95:in `process_request'
+    passenger (2.2.5) lib/phusion_passenger/abstract_request_handler.rb:207:in `main_loop'
+    passenger (2.2.5) lib/phusion_passenger/railz/application_spawner.rb:378:in `start_request_handler'
+    passenger (2.2.5) lib/phusion_passenger/railz/application_spawner.rb:336:in `handle_spawn_application'
+    passenger (2.2.5) lib/phusion_passenger/utils.rb:183:in `safe_fork'
+    passenger (2.2.5) lib/phusion_passenger/railz/application_spawner.rb:334:in `handle_spawn_application'
+    passenger (2.2.5) lib/phusion_passenger/abstract_server.rb:352:in `__send__'
+    passenger (2.2.5) lib/phusion_passenger/abstract_server.rb:352:in `main_loop'
+    passenger (2.2.5) lib/phusion_passenger/abstract_server.rb:196:in `start_synchronously'
+    passenger (2.2.5) lib/phusion_passenger/abstract_server.rb:163:in `start'
+    passenger (2.2.5) lib/phusion_passenger/railz/application_spawner.rb:213:in `start'
+    passenger (2.2.5) lib/phusion_passenger/spawn_manager.rb:262:in `spawn_rails_application'
+    passenger (2.2.5) lib/phusion_passenger/abstract_server_collection.rb:126:in `lookup_or_add'
+    passenger (2.2.5) lib/phusion_passenger/spawn_manager.rb:256:in `spawn_rails_application'
+    passenger (2.2.5) lib/phusion_passenger/abstract_server_collection.rb:80:in `synchronize'
+    passenger (2.2.5) lib/phusion_passenger/abstract_server_collection.rb:79:in `synchronize'
+    passenger (2.2.5) lib/phusion_passenger/spawn_manager.rb:255:in `spawn_rails_application'
+    passenger (2.2.5) lib/phusion_passenger/spawn_manager.rb:154:in `spawn_application'
+    passenger (2.2.5) lib/phusion_passenger/spawn_manager.rb:287:in `handle_spawn_application'
+    passenger (2.2.5) lib/phusion_passenger/abstract_server.rb:352:in `__send__'
+    passenger (2.2.5) lib/phusion_passenger/abstract_server.rb:352:in `main_loop'
+    passenger (2.2.5) lib/phusion_passenger/abstract_server.rb:196:in `start_synchronously'
+
+Rendered rescues/_trace (154.0ms)
+Rendered rescues/_request_and_response (0.4ms)
+Rendering rescues/layout (internal_server_error)
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AccountsController#show (for 127.0.0.1 at 2010-02-03 08:27:00) [GET]
+  Parameters: {"action"=>"show", "id"=>"1", "controller"=>"accounts"}
+  [4;35;1mAccount Columns (1.5ms)[0m   [0mSHOW FIELDS FROM `accounts`[0m
+  [4;36;1mAccount Load (0.3ms)[0m   [0;1mSELECT * FROM `accounts` WHERE (`accounts`.`id` = 1) [0m
+  [4;35;1mTransaction Load (0.5ms)[0m   [0mSELECT * FROM `transactions` WHERE (`transactions`.account_id = 1 AND (payment_date > '2010-02-01 00:00:00' and payment_date < '2010-02-04 00:00:00')) [0m
+  [4;36;1mTransaction Columns (1.3ms)[0m   [0;1mSHOW FIELDS FROM `transactions`[0m
+  [4;35;1mTransactionType Columns (2.1ms)[0m   [0mSHOW FIELDS FROM `transaction_types`[0m
+  [4;36;1mTransactionType Load (0.3ms)[0m   [0;1mSELECT * FROM `transaction_types` WHERE (`transaction_types`.`id` IN (1,2)) [0m
+
+NoMethodError (undefined method `strftime' for nil:NilClass):
+  lib/mysql_dates.rb:3:in `convert'
+  app/models/account.rb:42:in `tally'
+  app/controllers/accounts_controller.rb:18:in `show'
+  passenger (2.2.5) lib/phusion_passenger/rack/request_handler.rb:95:in `process_request'
+  passenger (2.2.5) lib/phusion_passenger/abstract_request_handler.rb:207:in `main_loop'
+  passenger (2.2.5) lib/phusion_passenger/railz/application_spawner.rb:378:in `start_request_handler'
+  passenger (2.2.5) lib/phusion_passenger/railz/application_spawner.rb:336:in `handle_spawn_application'
+  passenger (2.2.5) lib/phusion_passenger/utils.rb:183:in `safe_fork'
+  passenger (2.2.5) lib/phusion_passenger/railz/application_spawner.rb:334:in `handle_spawn_application'
+  passenger (2.2.5) lib/phusion_passenger/abstract_server.rb:352:in `__send__'
+  passenger (2.2.5) lib/phusion_passenger/abstract_server.rb:352:in `main_loop'
+  passenger (2.2.5) lib/phusion_passenger/abstract_server.rb:196:in `start_synchronously'
+  passenger (2.2.5) lib/phusion_passenger/abstract_server.rb:163:in `start'
+  passenger (2.2.5) lib/phusion_passenger/railz/application_spawner.rb:213:in `start'
+  passenger (2.2.5) lib/phusion_passenger/spawn_manager.rb:262:in `spawn_rails_application'
+  passenger (2.2.5) lib/phusion_passenger/abstract_server_collection.rb:126:in `lookup_or_add'
+  passenger (2.2.5) lib/phusion_passenger/spawn_manager.rb:256:in `spawn_rails_application'
+  passenger (2.2.5) lib/phusion_passenger/abstract_server_collection.rb:80:in `synchronize'
+  passenger (2.2.5) lib/phusion_passenger/abstract_server_collection.rb:79:in `synchronize'
+  passenger (2.2.5) lib/phusion_passenger/spawn_manager.rb:255:in `spawn_rails_application'
+  passenger (2.2.5) lib/phusion_passenger/spawn_manager.rb:154:in `spawn_application'
+  passenger (2.2.5) lib/phusion_passenger/spawn_manager.rb:287:in `handle_spawn_application'
+  passenger (2.2.5) lib/phusion_passenger/abstract_server.rb:352:in `__send__'
+  passenger (2.2.5) lib/phusion_passenger/abstract_server.rb:352:in `main_loop'
+  passenger (2.2.5) lib/phusion_passenger/abstract_server.rb:196:in `start_synchronously'
+
+Rendered rescues/_trace (45.5ms)
+Rendered rescues/_request_and_response (1.8ms)
+Rendering rescues/layout (internal_server_error)
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AccountsController#show (for 127.0.0.1 at 2010-02-03 08:27:39) [GET]
+  Parameters: {"action"=>"show", "id"=>"1", "controller"=>"accounts"}
+  [4;36;1mAccount Columns (2.1ms)[0m   [0;1mSHOW FIELDS FROM `accounts`[0m
+  [4;35;1mAccount Load (0.9ms)[0m   [0mSELECT * FROM `accounts` WHERE (`accounts`.`id` = 1) [0m
+  [4;36;1mTransaction Load (0.5ms)[0m   [0;1mSELECT * FROM `transactions` WHERE (`transactions`.account_id = 1 AND (payment_date > '2010-02-01 00:00:00' and payment_date < '2010-02-04 00:00:00')) [0m
+  [4;35;1mTransaction Columns (2.4ms)[0m   [0mSHOW FIELDS FROM `transactions`[0m
+  [4;36;1mTransactionType Columns (1.5ms)[0m   [0;1mSHOW FIELDS FROM `transaction_types`[0m
+  [4;35;1mTransactionType Load (0.6ms)[0m   [0mSELECT * FROM `transaction_types` WHERE (`transaction_types`.`id` IN (1,2)) [0m
+
+NoMethodError (undefined method `strftime' for nil:NilClass):
+  lib/mysql_dates.rb:3:in `convert'
+  app/models/account.rb:42:in `tally'
+  app/controllers/accounts_controller.rb:18:in `show'
+  passenger (2.2.5) lib/phusion_passenger/rack/request_handler.rb:95:in `process_request'
+  passenger (2.2.5) lib/phusion_passenger/abstract_request_handler.rb:207:in `main_loop'
+  passenger (2.2.5) lib/phusion_passenger/railz/application_spawner.rb:378:in `start_request_handler'
+  passenger (2.2.5) lib/phusion_passenger/railz/application_spawner.rb:336:in `handle_spawn_application'
+  passenger (2.2.5) lib/phusion_passenger/utils.rb:183:in `safe_fork'
+  passenger (2.2.5) lib/phusion_passenger/railz/application_spawner.rb:334:in `handle_spawn_application'
+  passenger (2.2.5) lib/phusion_passenger/abstract_server.rb:352:in `__send__'
+  passenger (2.2.5) lib/phusion_passenger/abstract_server.rb:352:in `main_loop'
+  passenger (2.2.5) lib/phusion_passenger/abstract_server.rb:196:in `start_synchronously'
+  passenger (2.2.5) lib/phusion_passenger/abstract_server.rb:163:in `start'
+  passenger (2.2.5) lib/phusion_passenger/railz/application_spawner.rb:213:in `start'
+  passenger (2.2.5) lib/phusion_passenger/spawn_manager.rb:262:in `spawn_rails_application'
+  passenger (2.2.5) lib/phusion_passenger/abstract_server_collection.rb:126:in `lookup_or_add'
+  passenger (2.2.5) lib/phusion_passenger/spawn_manager.rb:256:in `spawn_rails_application'
+  passenger (2.2.5) lib/phusion_passenger/abstract_server_collection.rb:80:in `synchronize'
+  passenger (2.2.5) lib/phusion_passenger/abstract_server_collection.rb:79:in `synchronize'
+  passenger (2.2.5) lib/phusion_passenger/spawn_manager.rb:255:in `spawn_rails_application'
+  passenger (2.2.5) lib/phusion_passenger/spawn_manager.rb:154:in `spawn_application'
+  passenger (2.2.5) lib/phusion_passenger/spawn_manager.rb:287:in `handle_spawn_application'
+  passenger (2.2.5) lib/phusion_passenger/abstract_server.rb:352:in `__send__'
+  passenger (2.2.5) lib/phusion_passenger/abstract_server.rb:352:in `main_loop'
+  passenger (2.2.5) lib/phusion_passenger/abstract_server.rb:196:in `start_synchronously'
+
+Rendered rescues/_trace (47.8ms)
+Rendered rescues/_request_and_response (0.4ms)
+Rendering rescues/layout (internal_server_error)
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AccountsController#show (for 127.0.0.1 at 2010-02-03 08:27:51) [GET]
+  Parameters: {"action"=>"show", "id"=>"1", "controller"=>"accounts"}
+  [4;35;1mAccount Columns (1.4ms)[0m   [0mSHOW FIELDS FROM `accounts`[0m
+  [4;36;1mAccount Load (0.4ms)[0m   [0;1mSELECT * FROM `accounts` WHERE (`accounts`.`id` = 1) [0m
+  [4;35;1mTransaction Load (0.5ms)[0m   [0mSELECT * FROM `transactions` WHERE (`transactions`.account_id = 1 AND (payment_date > '2010-02-01 00:00:00' and payment_date < '2010-02-04 00:00:00')) [0m
+  [4;36;1mTransaction Columns (2.6ms)[0m   [0;1mSHOW FIELDS FROM `transactions`[0m
+  [4;35;1mTransactionType Columns (1.3ms)[0m   [0mSHOW FIELDS FROM `transaction_types`[0m
+  [4;36;1mTransactionType Load (0.3ms)[0m   [0;1mSELECT * FROM `transaction_types` WHERE (`transaction_types`.`id` IN (1,2)) [0m
+
+NoMethodError (undefined method `strftime' for nil:NilClass):
+  lib/mysql_dates.rb:3:in `convert'
+  app/models/account.rb:42:in `tally'
+  app/controllers/accounts_controller.rb:18:in `show'
+  passenger (2.2.5) lib/phusion_passenger/rack/request_handler.rb:95:in `process_request'
+  passenger (2.2.5) lib/phusion_passenger/abstract_request_handler.rb:207:in `main_loop'
+  passenger (2.2.5) lib/phusion_passenger/railz/application_spawner.rb:378:in `start_request_handler'
+  passenger (2.2.5) lib/phusion_passenger/railz/application_spawner.rb:336:in `handle_spawn_application'
+  passenger (2.2.5) lib/phusion_passenger/utils.rb:183:in `safe_fork'
+  passenger (2.2.5) lib/phusion_passenger/railz/application_spawner.rb:334:in `handle_spawn_application'
+  passenger (2.2.5) lib/phusion_passenger/abstract_server.rb:352:in `__send__'
+  passenger (2.2.5) lib/phusion_passenger/abstract_server.rb:352:in `main_loop'
+  passenger (2.2.5) lib/phusion_passenger/abstract_server.rb:196:in `start_synchronously'
+  passenger (2.2.5) lib/phusion_passenger/abstract_server.rb:163:in `start'
+  passenger (2.2.5) lib/phusion_passenger/railz/application_spawner.rb:213:in `start'
+  passenger (2.2.5) lib/phusion_passenger/spawn_manager.rb:262:in `spawn_rails_application'
+  passenger (2.2.5) lib/phusion_passenger/abstract_server_collection.rb:126:in `lookup_or_add'
+  passenger (2.2.5) lib/phusion_passenger/spawn_manager.rb:256:in `spawn_rails_application'
+  passenger (2.2.5) lib/phusion_passenger/abstract_server_collection.rb:80:in `synchronize'
+  passenger (2.2.5) lib/phusion_passenger/abstract_server_collection.rb:79:in `synchronize'
+  passenger (2.2.5) lib/phusion_passenger/spawn_manager.rb:255:in `spawn_rails_application'
+  passenger (2.2.5) lib/phusion_passenger/spawn_manager.rb:154:in `spawn_application'
+  passenger (2.2.5) lib/phusion_passenger/spawn_manager.rb:287:in `handle_spawn_application'
+  passenger (2.2.5) lib/phusion_passenger/abstract_server.rb:352:in `__send__'
+  passenger (2.2.5) lib/phusion_passenger/abstract_server.rb:352:in `main_loop'
+  passenger (2.2.5) lib/phusion_passenger/abstract_server.rb:196:in `start_synchronously'
+
+Rendered rescues/_trace (120.6ms)
+Rendered rescues/_request_and_response (0.4ms)
+Rendering rescues/layout (internal_server_error)
+  [4;35;1mSQL (0.2ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AccountsController#show (for 127.0.0.1 at 2010-02-03 08:28:16) [GET]
+  Parameters: {"action"=>"show", "id"=>"1", "controller"=>"accounts"}
+  [4;36;1mAccount Columns (2.6ms)[0m   [0;1mSHOW FIELDS FROM `accounts`[0m
+  [4;35;1mAccount Load (0.5ms)[0m   [0mSELECT * FROM `accounts` WHERE (`accounts`.`id` = 1) [0m
+  [4;36;1mTransaction Load (1.8ms)[0m   [0;1mSELECT * FROM `transactions` WHERE (`transactions`.account_id = 1 AND (payment_date > '2010-02-01 00:00:00' and payment_date < '2010-02-04 00:00:00')) [0m
+  [4;35;1mTransaction Columns (2.6ms)[0m   [0mSHOW FIELDS FROM `transactions`[0m
+  [4;36;1mTransactionType Columns (2.2ms)[0m   [0;1mSHOW FIELDS FROM `transaction_types`[0m
+  [4;35;1mTransactionType Load (1.9ms)[0m   [0mSELECT * FROM `transaction_types` WHERE (`transaction_types`.`id` IN (1,2)) [0m
+  [4;36;1mTransaction Load (0.6ms)[0m   [0;1mSELECT * FROM `transactions` WHERE (`transactions`.account_id = 1 AND (payment_date <= '2010-02-02 23:59:59')) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `transaction_types` WHERE (`transaction_types`.`id` IN (1,2)) [0m
+Rendering template within layouts/application
+Rendering accounts/show
+Rendered accounts/_transaction (2.0ms)
+Rendered accounts/_transaction (0.3ms)
+Completed in 144ms (View: 22, DB: 12) | 200 OK [http://budgeteer.local/accounts/1]
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AccountsController#show (for 127.0.0.1 at 2010-02-03 08:39:03) [GET]
+  Parameters: {"action"=>"show", "id"=>"1", "controller"=>"accounts"}
+  [4;35;1mAccount Columns (1.5ms)[0m   [0mSHOW FIELDS FROM `accounts`[0m
+  [4;36;1mAccount Load (0.4ms)[0m   [0;1mSELECT * FROM `accounts` WHERE (`accounts`.`id` = 1) [0m
+  [4;35;1mTransaction Load (0.5ms)[0m   [0mSELECT * FROM `transactions` WHERE (`transactions`.account_id = 1 AND (payment_date > '2010-02-01 00:00:00' and payment_date < '2010-02-04 00:00:00')) [0m
+  [4;36;1mTransaction Columns (1.4ms)[0m   [0;1mSHOW FIELDS FROM `transactions`[0m
+  [4;35;1mTransactionType Columns (2.4ms)[0m   [0mSHOW FIELDS FROM `transaction_types`[0m
+  [4;36;1mTransactionType Load (0.3ms)[0m   [0;1mSELECT * FROM `transaction_types` WHERE (`transaction_types`.`id` IN (1,2)) [0m
+  [4;35;1mTransaction Load (0.9ms)[0m   [0mSELECT * FROM `transactions` WHERE (`transactions`.account_id = 1 AND (payment_date <= '2010-02-02 23:59:59')) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `transaction_types` WHERE (`transaction_types`.`id` IN (1,2)) [0m
+Rendering template within layouts/application
+Rendering accounts/show
+Rendered accounts/_transaction (1.6ms)
+Rendered accounts/_transaction (0.5ms)
+Completed in 568ms (View: 398, DB: 8) | 200 OK [http://budgeteer.local/accounts/1]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AccountsController#show (for 127.0.0.1 at 2010-02-03 08:39:43) [GET]
+  Parameters: {"action"=>"show", "id"=>"1", "controller"=>"accounts"}
+  [4;36;1mAccount Columns (3.3ms)[0m   [0;1mSHOW FIELDS FROM `accounts`[0m
+  [4;35;1mAccount Load (3.3ms)[0m   [0mSELECT * FROM `accounts` WHERE (`accounts`.`id` = 1) [0m
+  [4;36;1mTransaction Load (0.5ms)[0m   [0;1mSELECT * FROM `transactions` WHERE (`transactions`.account_id = 1 AND (payment_date > '2010-02-01 00:00:00' and payment_date < '2010-02-04 00:00:00')) [0m
+  [4;35;1mTransaction Columns (1.5ms)[0m   [0mSHOW FIELDS FROM `transactions`[0m
+  [4;36;1mTransactionType Columns (1.7ms)[0m   [0;1mSHOW FIELDS FROM `transaction_types`[0m
+  [4;35;1mTransactionType Load (0.7ms)[0m   [0mSELECT * FROM `transaction_types` WHERE (`transaction_types`.`id` IN (1,2)) [0m
+  [4;36;1mTransaction Load (0.8ms)[0m   [0;1mSELECT * FROM `transactions` WHERE (`transactions`.account_id = 1 AND (payment_date <= '2010-02-02 23:59:59')) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `transaction_types` WHERE (`transaction_types`.`id` IN (1,2)) [0m
+Rendering template within layouts/application
+Rendering accounts/show
+Rendered accounts/_transaction (0.5ms)
+Rendered accounts/_transaction (0.3ms)
+Completed in 48ms (View: 9, DB: 12) | 200 OK [http://budgeteer.local/accounts/1]
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AccountsController#show (for 127.0.0.1 at 2010-02-03 08:41:29) [GET]
+  Parameters: {"action"=>"show", "id"=>"1", "controller"=>"accounts"}
+  [4;35;1mAccount Columns (1.5ms)[0m   [0mSHOW FIELDS FROM `accounts`[0m
+  [4;36;1mAccount Load (0.6ms)[0m   [0;1mSELECT * FROM `accounts` WHERE (`accounts`.`id` = 1) [0m
+  [4;35;1mTransaction Load (0.5ms)[0m   [0mSELECT * FROM `transactions` WHERE (`transactions`.account_id = 1 AND (payment_date > '2010-02-01 00:00:00' and payment_date < '2010-02-04 00:00:00')) [0m
+  [4;36;1mTransaction Columns (1.4ms)[0m   [0;1mSHOW FIELDS FROM `transactions`[0m
+  [4;35;1mTransactionType Columns (3.6ms)[0m   [0mSHOW FIELDS FROM `transaction_types`[0m
+  [4;36;1mTransactionType Load (0.4ms)[0m   [0;1mSELECT * FROM `transaction_types` WHERE (`transaction_types`.`id` IN (1,2)) [0m
+  [4;35;1mTransaction Load (3.1ms)[0m   [0mSELECT * FROM `transactions` WHERE (`transactions`.account_id = 1 AND (payment_date <= '2010-02-02 23:59:59')) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `transaction_types` WHERE (`transaction_types`.`id` IN (1,2)) [0m
+Rendering template within layouts/application
+Rendering accounts/show
+Rendered accounts/_transaction (1.3ms)
+Rendered accounts/_transaction (0.3ms)
+Completed in 68ms (View: 33, DB: 11) | 200 OK [http://budgeteer.local/accounts/1]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AccountsController#show (for 127.0.0.1 at 2010-02-03 08:41:39) [GET]
+  Parameters: {"action"=>"show", "id"=>"1", "controller"=>"accounts"}
+  [4;36;1mAccount Columns (3.2ms)[0m   [0;1mSHOW FIELDS FROM `accounts`[0m
+  [4;35;1mAccount Load (0.3ms)[0m   [0mSELECT * FROM `accounts` WHERE (`accounts`.`id` = 1) [0m
+  [4;36;1mTransaction Load (0.4ms)[0m   [0;1mSELECT * FROM `transactions` WHERE (`transactions`.account_id = 1 AND (payment_date > '2010-02-01 00:00:00' and payment_date < '2010-02-04 00:00:00')) [0m
+  [4;35;1mTransaction Columns (2.4ms)[0m   [0mSHOW FIELDS FROM `transactions`[0m
+  [4;36;1mTransactionType Columns (1.3ms)[0m   [0;1mSHOW FIELDS FROM `transaction_types`[0m
+  [4;35;1mTransactionType Load (0.4ms)[0m   [0mSELECT * FROM `transaction_types` WHERE (`transaction_types`.`id` IN (1,2)) [0m
+  [4;36;1mTransaction Load (0.3ms)[0m   [0;1mSELECT * FROM `transactions` WHERE (`transactions`.account_id = 1 AND (payment_date <= '2010-02-02 23:59:59')) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `transaction_types` WHERE (`transaction_types`.`id` IN (1,2)) [0m
+Rendering template within layouts/application
+Rendering accounts/show
+Rendered accounts/_transaction (1.3ms)
+Rendered accounts/_transaction (0.3ms)
+Completed in 120ms (View: 89, DB: 8) | 200 OK [http://budgeteer.local/accounts/1]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AccountsController#show (for 127.0.0.1 at 2010-02-03 08:42:17) [GET]
+  Parameters: {"action"=>"show", "id"=>"1", "controller"=>"accounts"}
+  [4;35;1mAccount Columns (1.4ms)[0m   [0mSHOW FIELDS FROM `accounts`[0m
+  [4;36;1mAccount Load (1.5ms)[0m   [0;1mSELECT * FROM `accounts` WHERE (`accounts`.`id` = 1) [0m
+  [4;35;1mTransaction Load (0.5ms)[0m   [0mSELECT * FROM `transactions` WHERE (`transactions`.account_id = 1 AND (payment_date > '2010-02-01 00:00:00' and payment_date < '2010-02-04 00:00:00')) [0m
+  [4;36;1mTransaction Columns (1.3ms)[0m   [0;1mSHOW FIELDS FROM `transactions`[0m
+  [4;35;1mTransactionType Columns (1.4ms)[0m   [0mSHOW FIELDS FROM `transaction_types`[0m
+  [4;36;1mTransactionType Load (0.3ms)[0m   [0;1mSELECT * FROM `transaction_types` WHERE (`transaction_types`.`id` IN (1,2)) [0m
+  [4;35;1mTransaction Load (0.3ms)[0m   [0mSELECT * FROM `transactions` WHERE (`transactions`.account_id = 1 AND (payment_date <= '2010-02-02 23:59:59')) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `transaction_types` WHERE (`transaction_types`.`id` IN (1,2)) [0m
+Rendering template within layouts/application
+Rendering accounts/show
+Rendered accounts/_transaction (1.2ms)
+Rendered accounts/_transaction (0.3ms)
+Completed in 39ms (View: 8, DB: 7) | 200 OK [http://budgeteer.local/accounts/1]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AccountsController#show (for 127.0.0.1 at 2010-02-03 08:42:37) [GET]
+  Parameters: {"action"=>"show", "id"=>"1", "controller"=>"accounts"}
+  [4;36;1mAccount Columns (1.4ms)[0m   [0;1mSHOW FIELDS FROM `accounts`[0m
+  [4;35;1mAccount Load (1.4ms)[0m   [0mSELECT * FROM `accounts` WHERE (`accounts`.`id` = 1) [0m
+  [4;36;1mTransaction Load (0.5ms)[0m   [0;1mSELECT * FROM `transactions` WHERE (`transactions`.account_id = 1 AND (payment_date > '2010-02-01 00:00:00' and payment_date < '2010-02-04 00:00:00')) [0m
+  [4;35;1mTransaction Columns (1.4ms)[0m   [0mSHOW FIELDS FROM `transactions`[0m
+  [4;36;1mTransactionType Columns (1.4ms)[0m   [0;1mSHOW FIELDS FROM `transaction_types`[0m
+  [4;35;1mTransactionType Load (0.3ms)[0m   [0mSELECT * FROM `transaction_types` WHERE (`transaction_types`.`id` IN (1,2)) [0m
+  [4;36;1mTransaction Load (0.7ms)[0m   [0;1mSELECT * FROM `transactions` WHERE (`transactions`.account_id = 1 AND (payment_date <= '2010-02-02 23:59:59')) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `transaction_types` WHERE (`transaction_types`.`id` IN (1,2)) [0m
+Rendering template within layouts/application
+Rendering accounts/show
+Rendered accounts/_transaction (1.3ms)
+Rendered accounts/_transaction (0.3ms)
+Completed in 39ms (View: 8, DB: 7) | 200 OK [http://budgeteer.local/accounts/1]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AccountsController#show (for 127.0.0.1 at 2010-02-03 08:43:05) [GET]
+  Parameters: {"action"=>"show", "id"=>"1", "controller"=>"accounts"}
+  [4;35;1mAccount Columns (1.4ms)[0m   [0mSHOW FIELDS FROM `accounts`[0m
+  [4;36;1mAccount Load (1.4ms)[0m   [0;1mSELECT * FROM `accounts` WHERE (`accounts`.`id` = 1) [0m
+  [4;35;1mTransaction Load (0.4ms)[0m   [0mSELECT * FROM `transactions` WHERE (`transactions`.account_id = 1 AND (payment_date > '2010-02-01 00:00:00' and payment_date < '2010-02-04 00:00:00')) [0m
+  [4;36;1mTransaction Columns (2.2ms)[0m   [0;1mSHOW FIELDS FROM `transactions`[0m
+  [4;35;1mTransactionType Columns (1.3ms)[0m   [0mSHOW FIELDS FROM `transaction_types`[0m
+  [4;36;1mTransactionType Load (0.3ms)[0m   [0;1mSELECT * FROM `transaction_types` WHERE (`transaction_types`.`id` IN (1,2)) [0m
+  [4;35;1mTransaction Load (0.3ms)[0m   [0mSELECT * FROM `transactions` WHERE (`transactions`.account_id = 1 AND (payment_date <= '2010-02-02 23:59:59')) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `transaction_types` WHERE (`transaction_types`.`id` IN (1,2)) [0m
+Rendering template within layouts/application
+Rendering accounts/show
+Rendered accounts/_transaction (1.3ms)
+Rendered accounts/_transaction (0.3ms)
+Completed in 116ms (View: 85, DB: 7) | 200 OK [http://budgeteer.local/accounts/1]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AccountsController#show (for 127.0.0.1 at 2010-02-03 08:44:29) [GET]
+  Parameters: {"action"=>"show", "id"=>"1", "controller"=>"accounts"}
+  [4;36;1mAccount Columns (1.4ms)[0m   [0;1mSHOW FIELDS FROM `accounts`[0m
+  [4;35;1mAccount Load (1.4ms)[0m   [0mSELECT * FROM `accounts` WHERE (`accounts`.`id` = 1) [0m
+  [4;36;1mTransaction Load (0.4ms)[0m   [0;1mSELECT * FROM `transactions` WHERE (`transactions`.account_id = 1 AND (payment_date > '2010-02-01 00:00:00' and payment_date < '2010-02-04 00:00:00')) [0m
+  [4;35;1mTransaction Columns (1.3ms)[0m   [0mSHOW FIELDS FROM `transactions`[0m
+  [4;36;1mTransactionType Columns (1.7ms)[0m   [0;1mSHOW FIELDS FROM `transaction_types`[0m
+  [4;35;1mTransactionType Load (0.3ms)[0m   [0mSELECT * FROM `transaction_types` WHERE (`transaction_types`.`id` IN (1,2)) [0m
+  [4;36;1mTransaction Load (0.4ms)[0m   [0;1mSELECT * FROM `transactions` WHERE (`transactions`.account_id = 1 AND (payment_date <= '2010-02-02 23:59:59')) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `transaction_types` WHERE (`transaction_types`.`id` IN (1,2)) [0m
+Rendering template within layouts/application
+Rendering accounts/show
+Rendered accounts/_transaction (1.3ms)
+Rendered accounts/_transaction (0.4ms)
+Completed in 38ms (View: 8, DB: 7) | 200 OK [http://budgeteer.local/accounts/1]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AccountsController#show (for 127.0.0.1 at 2010-02-03 08:47:02) [GET]
+  Parameters: {"action"=>"show", "id"=>"1", "controller"=>"accounts"}
+  [4;35;1mAccount Columns (1.4ms)[0m   [0mSHOW FIELDS FROM `accounts`[0m
+  [4;36;1mAccount Load (1.3ms)[0m   [0;1mSELECT * FROM `accounts` WHERE (`accounts`.`id` = 1) [0m
+  [4;35;1mTransaction Load (0.4ms)[0m   [0mSELECT * FROM `transactions` WHERE (`transactions`.account_id = 1 AND (payment_date > '2010-02-01 00:00:00' and payment_date < '2010-02-04 00:00:00')) [0m
+  [4;36;1mTransaction Columns (1.3ms)[0m   [0;1mSHOW FIELDS FROM `transactions`[0m
+  [4;35;1mTransactionType Columns (1.3ms)[0m   [0mSHOW FIELDS FROM `transaction_types`[0m
+  [4;36;1mTransactionType Load (0.3ms)[0m   [0;1mSELECT * FROM `transaction_types` WHERE (`transaction_types`.`id` IN (1,2)) [0m
+  [4;35;1mTransaction Load (0.3ms)[0m   [0mSELECT * FROM `transactions` WHERE (`transactions`.account_id = 1 AND (payment_date <= '2010-02-02 23:59:59')) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `transaction_types` WHERE (`transaction_types`.`id` IN (1,2)) [0m
+Rendering template within layouts/application
+Rendering accounts/show
+
+ActionView::TemplateError (undefined method `abs' for #<ActionView::Base:0x1040a9f88>) on line #7 of app/views/accounts/_transaction.html.erb:
+4:   <td class="payment_date"><%= transaction.payment_date.strftime("%m-%d-%y") %></td>
+5:   <td class="payee"><%= transaction.payee %></td>
+6:   <td class="amount"><%= "-" unless transaction.transaction_type.credit? %>$<%= sprintf("%0.2f",transaction.amount) %></td>
+7:   <td class="total"><%= "-" if @running_total < 0 %>$<%= sprintf("%0.2f", abs(@running_total)) %></td>
+8: </tr>
+
+    app/views/accounts/_transaction.html.erb:7
+    app/views/accounts/show.html.erb:7
+    app/controllers/accounts_controller.rb:20:in `show'
+    passenger (2.2.5) lib/phusion_passenger/rack/request_handler.rb:95:in `process_request'
+    passenger (2.2.5) lib/phusion_passenger/abstract_request_handler.rb:207:in `main_loop'
+    passenger (2.2.5) lib/phusion_passenger/railz/application_spawner.rb:378:in `start_request_handler'
+    passenger (2.2.5) lib/phusion_passenger/railz/application_spawner.rb:336:in `handle_spawn_application'
+    passenger (2.2.5) lib/phusion_passenger/utils.rb:183:in `safe_fork'
+    passenger (2.2.5) lib/phusion_passenger/railz/application_spawner.rb:334:in `handle_spawn_application'
+    passenger (2.2.5) lib/phusion_passenger/abstract_server.rb:352:in `__send__'
+    passenger (2.2.5) lib/phusion_passenger/abstract_server.rb:352:in `main_loop'
+    passenger (2.2.5) lib/phusion_passenger/abstract_server.rb:196:in `start_synchronously'
+    passenger (2.2.5) lib/phusion_passenger/abstract_server.rb:163:in `start'
+    passenger (2.2.5) lib/phusion_passenger/railz/application_spawner.rb:213:in `start'
+    passenger (2.2.5) lib/phusion_passenger/spawn_manager.rb:262:in `spawn_rails_application'
+    passenger (2.2.5) lib/phusion_passenger/abstract_server_collection.rb:126:in `lookup_or_add'
+    passenger (2.2.5) lib/phusion_passenger/spawn_manager.rb:256:in `spawn_rails_application'
+    passenger (2.2.5) lib/phusion_passenger/abstract_server_collection.rb:80:in `synchronize'
+    passenger (2.2.5) lib/phusion_passenger/abstract_server_collection.rb:79:in `synchronize'
+    passenger (2.2.5) lib/phusion_passenger/spawn_manager.rb:255:in `spawn_rails_application'
+    passenger (2.2.5) lib/phusion_passenger/spawn_manager.rb:154:in `spawn_application'
+    passenger (2.2.5) lib/phusion_passenger/spawn_manager.rb:287:in `handle_spawn_application'
+    passenger (2.2.5) lib/phusion_passenger/abstract_server.rb:352:in `__send__'
+    passenger (2.2.5) lib/phusion_passenger/abstract_server.rb:352:in `main_loop'
+    passenger (2.2.5) lib/phusion_passenger/abstract_server.rb:196:in `start_synchronously'
+
+Rendered rescues/_trace (61.2ms)
+Rendered rescues/_request_and_response (1.6ms)
+Rendering rescues/layout (internal_server_error)
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AccountsController#show (for 127.0.0.1 at 2010-02-03 08:48:12) [GET]
+  Parameters: {"action"=>"show", "id"=>"1", "controller"=>"accounts"}
+  [4;36;1mAccount Columns (53.3ms)[0m   [0;1mSHOW FIELDS FROM `accounts`[0m
+  [4;35;1mAccount Load (0.3ms)[0m   [0mSELECT * FROM `accounts` WHERE (`accounts`.`id` = 1) [0m
+  [4;36;1mTransaction Load (0.4ms)[0m   [0;1mSELECT * FROM `transactions` WHERE (`transactions`.account_id = 1 AND (payment_date > '2010-02-01 00:00:00' and payment_date < '2010-02-04 00:00:00')) [0m
+  [4;35;1mTransaction Columns (1.5ms)[0m   [0mSHOW FIELDS FROM `transactions`[0m
+  [4;36;1mTransactionType Columns (1.6ms)[0m   [0;1mSHOW FIELDS FROM `transaction_types`[0m
+  [4;35;1mTransactionType Load (0.3ms)[0m   [0mSELECT * FROM `transaction_types` WHERE (`transaction_types`.`id` IN (1,2)) [0m
+  [4;36;1mTransaction Load (0.3ms)[0m   [0;1mSELECT * FROM `transactions` WHERE (`transactions`.account_id = 1 AND (payment_date <= '2010-02-02 23:59:59')) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `transaction_types` WHERE (`transaction_types`.`id` IN (1,2)) [0m
+Rendering template within layouts/application
+Rendering accounts/show
+Rendered accounts/_transaction (1.4ms)
+Rendered accounts/_transaction (0.3ms)
+Completed in 125ms (View: 10, DB: 58) | 200 OK [http://budgeteer.local/accounts/1]
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AccountsController#show (for 127.0.0.1 at 2010-02-03 08:56:10) [GET]
+  Parameters: {"action"=>"show", "id"=>"1", "controller"=>"accounts"}
+  [4;35;1mAccount Columns (1.5ms)[0m   [0mSHOW FIELDS FROM `accounts`[0m
+  [4;36;1mAccount Load (0.4ms)[0m   [0;1mSELECT * FROM `accounts` WHERE (`accounts`.`id` = 1) [0m
+  [4;35;1mTransaction Load (0.6ms)[0m   [0mSELECT * FROM `transactions` WHERE (`transactions`.account_id = 1 AND (payment_date > '2010-02-01 00:00:00' and payment_date < '2010-02-04 00:00:00')) [0m
+  [4;36;1mTransaction Columns (1.3ms)[0m   [0;1mSHOW FIELDS FROM `transactions`[0m
+  [4;35;1mTransactionType Columns (1.5ms)[0m   [0mSHOW FIELDS FROM `transaction_types`[0m
+  [4;36;1mTransactionType Load (1.3ms)[0m   [0;1mSELECT * FROM `transaction_types` WHERE (`transaction_types`.`id` IN (1,2)) [0m
+  [4;35;1mTransaction Load (0.6ms)[0m   [0mSELECT * FROM `transactions` WHERE (`transactions`.account_id = 1 AND (payment_date <= '2010-02-02 23:59:59')) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `transaction_types` WHERE (`transaction_types`.`id` IN (1,2)) [0m
+Rendering template within layouts/application
+Rendering accounts/show
+Rendered accounts/_transaction (2.8ms)
+Rendered accounts/_transaction (0.6ms)
+Completed in 1441ms (View: 945, DB: 7) | 200 OK [http://budgeteer.local/accounts/1]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing AccountsController#index (for 127.0.0.1 at 2010-02-03 08:56:52) [GET]
+  Parameters: {"action"=>"index", "controller"=>"accounts"}
+  [4;36;1mAccount Load (0.4ms)[0m   [0;1mSELECT * FROM `accounts` [0m
+Rendering template within layouts/application
+Rendering accounts/index
+  [4;35;1mAccount Columns (1.8ms)[0m   [0mSHOW FIELDS FROM `accounts`[0m
+Completed in 19ms (View: 10, DB: 2) | 200 OK [http://budgeteer.local/accounts]

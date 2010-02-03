@@ -15,6 +15,7 @@ class AccountsController < ApplicationController
   def show
     @account = Account.find(params[:id])
     @transactions = @account.transactions_by_date_range(params[:start], params[:end])
+    @running_total = @account.tally(params[:start])
 
     respond_to do |format|
       format.html # show.html.erb

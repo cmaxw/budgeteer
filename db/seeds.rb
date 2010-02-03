@@ -8,3 +8,4 @@
 TransactionType.create(:name => "Debit", :credit => false)
 TransactionType.create(:name => "Deposit", :credit => true)
 TransactionType.create(:name => "Check", :credit => false)
+TransactionType.create(:name => "Payment", :credit => true)

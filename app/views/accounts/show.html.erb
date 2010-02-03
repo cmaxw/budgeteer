@@ -3,5 +3,21 @@
 <%= link_to 'All Accounts', accounts_path %>
 <h2>Check Register</h2>
 <div class="register">
-<%= render :partial => "register_line", :collection => @transactions %>
+  <table>
+    <tr class="transaction <%= cycle("odd", "even") %>">
+      <th class="transaction_type">Type</th>
+      <th class="payment_date">Date</th>
+      <th class="payee">Recipient/Description</th>
+      <th class="amount">Amount</th>
+      <th class="total">Balance</th>
+    </tr>
+    <tr class="transaction <%= cycle("odd", "even") %>">
+      <td class="transaction_type"></td>
+      <td class="payment_date"><%= params[:start] || Time.now.beginning_of_month.strftime("%m-%d-%y") %> </td>
+      <td class="payee">Balance Forward</td>
+      <td class="amount">$0.00</td>
+      <td class="total"><%= "-" if @running_total < 0 %>$<%= sprintf("%0.2f", @running_total.abs) %></td>
+    </tr>
+    <%= render :partial => "transaction", :collection => @transactions %>
+  </table>
 </div>
