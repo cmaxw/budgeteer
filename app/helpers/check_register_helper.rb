@@ -1,0 +1,2 @@
+module CheckRegisterHelper
+end

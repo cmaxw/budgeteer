@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  check_number: MyString
+  transaction_type: 
+  payee: MyString
+  amount: 1.5
+  payment_date: 
+  cleared: false
+
+two:
+  check_number: MyString
+  transaction_type: 
+  payee: MyString
+  amount: 1.5
+  payment_date: 
+  cleared: false
